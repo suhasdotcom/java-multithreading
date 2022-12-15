@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 class ResourceContainer extends Thread {
     public static int resourceCount = 0;
     private final int incrementResource;
-    Lock modifier = new ReentrantLock();
+    static Lock modifier = new ReentrantLock();
 
     public ResourceContainer(int incrementResource) {
         this.incrementResource = incrementResource;

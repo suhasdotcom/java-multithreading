@@ -3,6 +3,7 @@ import java.util.concurrent.locks.ReentrantLock;
 class ReentrantResourceContainer extends Thread {
     public static int resourceCount = 0;
     private final int incrementResource;
+    private int counter = 0;
     public static ReentrantLock modifier = new ReentrantLock();
 
     public ReentrantResourceContainer(int incrementResource) {
@@ -11,14 +12,15 @@ class ReentrantResourceContainer extends Thread {
 
     @Override
     public void run() {
-        if(resourceCount>=incrementResource)
+        if(counter>=incrementResource)
             return;
         System.out.println("\tReentrantResourceContainer.run start");
         modifier.lock();
         System.out.println("modifier hold-count = " + modifier.getHoldCount());
         resourceCount++;
-        modifier.unlock();
+        counter++;
         run();
+        modifier.unlock();
         System.out.println("\tReentrantResourceContainer.run end");
     }
 }
