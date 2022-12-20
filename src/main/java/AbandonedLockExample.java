@@ -37,9 +37,9 @@ class PhilosopherAbandoner extends Thread {
 public class AbandonedLockExample {
     public static void main(String[] args) {
         System.out.println("DeadLockExample.main starts");
-        Lock chopstickA = new ReentrantLock();
-        Lock chopstickB = new ReentrantLock();
-        Lock chopstickC = new ReentrantLock();
+        final Lock chopstickA = new ReentrantLock();
+        final Lock chopstickB = new ReentrantLock();
+        final Lock chopstickC = new ReentrantLock();
 
         new PhilosopherAbandoner("Suhas", chopstickA, chopstickB).start();
         new PhilosopherAbandoner("Plato", chopstickB, chopstickC).start();

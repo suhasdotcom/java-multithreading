@@ -4,7 +4,7 @@ class ReentrantResourceContainer extends Thread {
     public static int resourceCount = 0;
     private final int incrementResource;
     private int counter = 0;
-    public static ReentrantLock modifier = new ReentrantLock();
+    private static final ReentrantLock modifier = new ReentrantLock();
 
     public ReentrantResourceContainer(int incrementResource) {
         this.incrementResource = incrementResource;

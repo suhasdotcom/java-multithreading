@@ -18,15 +18,15 @@ class CalendarUser extends Thread {
         System.out.println("\tCalendarUser.run " + getName() + " start");
         while(today<days.length-1) {
             if(this.getName().contains("Writer")) {
-                readerLock.lock();
+                writerLock.lock();
                 today = (today+1)%7;
                 System.out.println("\tCalendarUser.run " + this.getName() + " updated today to "+days[today]);
-                readerLock.unlock();
+                writerLock.unlock();
             }
             else {
-                writerLock.lock();
+                readerLock.lock();
                 System.out.println("\tCalendarUser.run " + getName() + " reads today as " + days[today]);
-                writerLock.unlock();
+                readerLock.unlock();
             }
         }
         System.out.println("\tCalendarUser.run " + getName() + " end");

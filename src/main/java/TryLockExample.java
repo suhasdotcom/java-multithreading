@@ -3,7 +3,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class EntryMaker extends Thread{
     public static int registeredItems = 0;
-    public static Lock registrar = new ReentrantLock();
+    private static final Lock registrar = new ReentrantLock();
     public int itemsToAdd = 0;
 
     public EntryMaker(String name) {
